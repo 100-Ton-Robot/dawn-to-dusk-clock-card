@@ -77,7 +77,7 @@ Or in YAML:
 | `clocks` | yes | List of clock entries, rendered left → right in the order given |
 | `clocks[].tz` | yes | Any [IANA timezone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g. `Europe/Paris`) |
 | `clocks[].label` | yes | Text shown above the time; truncates with an ellipsis if the column is too narrow |
-| `clocks[].lat` / `clocks[].lon` | no | Latitude/longitude in decimal degrees. When given, the column background shows a sun-position gradient (night → dawn/dusk → daylight) that updates live. Omit both to get a plain dark background with no sun tracking. |
+| `clocks[].lat` / `clocks[].lon` | no | Latitude/longitude in decimal degrees. When given, the column background shows a sun-position gradient (night → dawn/dusk → daylight) that updates live. If `lat` or `lon` is missing, the column gets a plain dark background with no sun gradient. |
 | `label_size` | no | Label text size as a multiple of the dashboard's normal text size. Default `1.0` |
 | `time_size` | no | Time text size, same units. Default `1.05` |
 | `date_size` | no | Date text size, same units. Default `0.7` |

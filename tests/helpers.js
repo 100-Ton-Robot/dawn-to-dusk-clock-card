@@ -15,6 +15,8 @@ const AT = {
   twoDates: "2026-11-11T11:50:00Z",
   // Auckland 11 PM and San Francisco 2 AM: every clock is on Wed, Nov 11.
   oneDate: "2026-11-11T10:00:00Z",
+  // Midnight in Auckland (UTC+13): Thu, Nov 12 starts there while the other clocks stay on Wed, Nov 11.
+  aucklandMidnight: "2026-11-11T11:00:00Z",
 };
 
 function readToken() {
@@ -84,9 +86,11 @@ async function installView(browser) {
   await page.close();
 }
 
-// Opens the test view with the browser's clock fixed at `at`, and waits for both cards.
-async function openView(page, at, { edit = false } = {}) {
-  await page.clock.setFixedTime(new Date(at));
+// Opens the test view with the browser's clock fixed at `at`, and waits for both cards. With `running`, the clock
+// starts at `at` and keeps going, so the page's timers fire; move it with page.clock.pauseAt / runFor.
+async function openView(page, at, { edit = false, running = false } = {}) {
+  if (running) await page.clock.install({ time: new Date(at) });
+  else await page.clock.setFixedTime(new Date(at));
   await page.goto(`/${DASHBOARD}/${VIEW.path}${edit ? "?edit=1" : ""}`);
   await waitForHass(page);
   await page.waitForFunction(

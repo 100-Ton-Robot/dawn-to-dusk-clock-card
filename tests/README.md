@@ -39,9 +39,12 @@ Never turn on Playwright tracing: a trace records the access token.
 | One date bar / the date bar splits | Clocks on the same calendar date share a bar, and the bar splits where the date changes |
 | The visual editor opens | The editor loads with the card's clocks |
 | Four clocks fit the editor preview | No label, time or date is wider than its column in the editor's narrow preview |
-| Eight clocks fit the editor preview | **Expected to fail** for now: at that width the times run into each other. Marked with `test.fail()` until the card handles it |
+| System format: language and 24-hour | With Home Assistant set to en-GB and 24-hour, times have no AM/PM and dates put the day first |
+| Custom format: own locale and hour cycle | `locale: de-DE` and `hour_cycle: 24` win over Home Assistant's settings: German names, 24-hour times |
+| One clock keeps the default format | A per-clock `format: default` stays `3:50 AM` while the card is German, and date bars still group by date |
+| Midnight splits the date bar | Running the clock across Auckland's midnight splits the date bar with no page reload |
 
-Every check fixes the browser's clock at a set moment (see `AT` in [`helpers.js`](./helpers.js)), so skies, times and date bars are the same on every run. Times are checked in Home Assistant's default 12-hour English format; a test user with another language or time format will see the time checks fail.
+Every check fixes the browser's clock at a set moment (see `AT` in [`helpers.js`](./helpers.js)), so skies, times and date bars are the same on every run. The other checks expect the test user's language and time format to be English and 12-hour; the format checks set their own for the card they draw and never change the user's profile.
 
 ## What they don't cover
 
