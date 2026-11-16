@@ -1,0 +1,12 @@
+#!/bin/sh
+# Block a push if the history contains a secret or a site-specific term.
+set -eu
+
+command -v gitleaks >/dev/null 2>&1 || [ -x /data/bin/gitleaks ] || {
+    echo "pre-push: ERROR: gitleaks not found" >&2
+    exit 1
+}
+gitleaks_bin=$(command -v gitleaks || echo /data/bin/gitleaks)
+
+"$gitleaks_bin" git --redact --no-banner --log-level warn --exit-code 1 .
+scripts/check_site_terms.sh

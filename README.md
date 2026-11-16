@@ -158,6 +158,18 @@ The editor follows your Home Assistant language. English (`en`, US spelling) and
 
 The card uses a 4-row CSS grid: a small top spacer, the label row, the time row, and a date row. Consecutive clocks that share the same calendar date get a single date bar spanning their columns (at most two groups, since ordering is monotonic). The grouping recomputes every second but only touches the DOM when the grouping actually changes, so it survives midnight rollovers without a page reload. The card takes the height of its content (no fixed row count on sections dashboards), so text sizes and gaps never clip the date row.
 
+## Contributing
+
+The browser tests run against a test Home Assistant. See [`tests/README.md`](tests/README.md).
+
+Enable the checks that run before each push:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+The hook needs [gitleaks](https://github.com/gitleaks/gitleaks) and a site-term list. See [`scripts/README.md`](scripts/README.md).
+
 ## License
 
 [MIT](./LICENSE)
