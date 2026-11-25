@@ -17,12 +17,15 @@ A lightweight [Home Assistant](https://www.home-assistant.io/) Lovelace card (`c
 
 ### Option A — Marketplace (recommended)
 
-1. In Home Assistant, go to **Settings → Marketplace**.
-2. Select **Add from link** (upper right).
-3. Enter `100-Ton-Robot/dawn-to-dusk-clock-card` and select **Add**. If asked for a type, choose **Dashboard**.
-4. Install **Dawn to Dusk Clock**, then reload the browser.
+[![Open your Home Assistant instance and open Dawn to Dusk Clock in the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=100-Ton-Robot&repository=dawn-to-dusk-clock-card&category=plugin)
+
+1. In Home Assistant, go to **Settings → Marketplace** (on Home Assistant 2026.10 and older: **HACS**), or select the badge above.
+2. Search for **Dawn to Dusk Clock** and open it.
+3. Select **Install** (**Download** in HACS), then reload the browser.
 
 The Marketplace installs the card under `www/community` and registers the dashboard resource for you. If you manage resources in YAML, the install dialog shows the resource line to add. Skip to [Configuration](#configuration).
+
+If the card doesn't show up in search, add it by link: **Settings → Marketplace → Add from link**, enter `100-Ton-Robot/dawn-to-dusk-clock-card`, and choose **Dashboard** if asked for a type.
 
 ### Option B — Manual install
 
